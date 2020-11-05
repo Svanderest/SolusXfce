@@ -3,16 +3,16 @@ sudo eopkg upgrade
 echo "Installing build tools"
 sudo eopkg install -c system.devel
 echo "Installing dependencies"
-sudo eopkg install wget xtrans libxmu-devel util-macros-devel gtk-doc-devel vala libgtk-2-devel libgtk-3-devel libstartup-notification-devel perl-uri libwnck-devel libcanberra-devel libnotify-devel libxklavier-devel colord-devel libinput-devel xorg-driver-input-libinput-devel 
+sudo eopkg install wget xtrans libxmu-devel util-macros-devel gtk-doc-devel vala libgtk-2-devel libgtk-3-devel libstartup-notification-devel perl-uri libwnck>
 echo "Creating sources directory"
 mkdir sources
 cd sources
 for file in $(grep -v '^#' ../Files)
 do
   conf="--prefix=/usr --sysconfdir=/etc --enable-gtk-doc"
-  name=$(echo $file | sed 's/\(.*\)-/\1 /' | awk '{print $2}')
-  major=$(echo $file | sed 's|-| |' | sed 's|\.| |g' | awk '{print $2}')
-  minor=$(echo $file | sed 's|-| |' | sed 's|\.| |g' | awk '{print $3}')
+  name=$(echo $file | sed 's/\(.*\)-/\1 /' | awk '{print $1}')
+  major=$(echo $file | sed 's/\(.*\)-/\1 /' | sed 's|\.| |g' | awk '{print $2}')
+  minor=$(echo $file | sed 's/\(.*\)-/\1 /' | sed 's|\.| |g' | awk '{print $3}')
   echo "Installing $name $major $minor"
   directory=${file%.tar.bz2}  
   case $file in    
