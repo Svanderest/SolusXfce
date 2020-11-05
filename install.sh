@@ -13,7 +13,8 @@ do
   name=$(echo $file | sed 's/\(.*\)-/\1 /' | awk '{print $2}')
   major=$(echo $file | sed 's|-| |' | sed 's|\.| |g' | awk '{print $2}')
   minor=$(echo $file | sed 's|-| |' | sed 's|\.| |g' | awk '{print $3}')
-  directory ${file%.tar.bz2}  
+  echo "Installing $name $major $minor"
+  directory=${file%.tar.bz2}  
   case $file in    
     iceauth-1.0.8.tar.bz2 )
       wget https://www.x.org/pub/individual/app/$file
